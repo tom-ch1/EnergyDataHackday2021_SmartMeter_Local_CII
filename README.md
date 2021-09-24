@@ -3,7 +3,7 @@
 # Infrastructure
 ## nuc
 * hostname: hackday
-* ip address: 10.19.103.106
+* ip address: 192.168.1.100
 * credentials:
   * hackday / hackday
 
