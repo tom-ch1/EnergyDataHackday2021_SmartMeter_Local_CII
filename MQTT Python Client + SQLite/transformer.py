@@ -1,15 +1,26 @@
 import json
 
+ENDPOINT = "grafana"
 
-def transform(message):
+
+def transform(message: object):
+    """Performs the message harmonization.
+
+    Args:
+        message
+
+    Returns:
+        object
+    """
     topic = message.topic
     if "tele/gPlug" in topic:
+        name = topic.split("/")[1]
         data = json.loads(message.payload)
         [field, value] = list(data["z"].items())[0]
         value = data["z"][field]
-        name = topic.split("/")[1]
         time = data["Time"]
-        return format_msg(name, time, field, value)
+        new_field = transform("DSMR", field)
+        return format_msg(name, time, new_field, value)
 
     if "smartmeter/" in topic:
         name = topic.split("/")[1]
@@ -17,14 +28,14 @@ def transform(message):
         value = data["value"]
         time = data["timestamp"]
         field = topic.split("/")[2]
-        new_field = mapping("EKZ", field)
+        new_field = mapping("DLMS", field)
         return format_msg(name, time, new_field, value)
 
     return None, None
 
 
 def format_msg(name, time, field, value):
-    topic = f"grafana/{name}/{field}"
+    topic = f"{ENDPOINT}/{name}/{field}"
     payload = json.dumps(
         {
             'measurement': field,
@@ -40,7 +51,9 @@ def format_msg(name, time, field, value):
 
 
 def mapping(device, field):
-    if device == "EKZ":
+    if device == "DSMR":
+        return field
+    if device == "DLMS":
         if field == "ACTIVE_POWER_P":
             return "Pi"
         if field == "ACTIVE_POWER_N":
@@ -53,5 +66,4 @@ def mapping(device, field):
             return "I3"
         if field == "VOLTAGE_L3":
             return "I3"
-
     return field
