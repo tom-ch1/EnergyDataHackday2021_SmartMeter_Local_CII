@@ -32,6 +32,11 @@ The customer can thus use the data for further processing, visualisation or auto
 ### Romande Energie (Brand / Model)
 * type of adapter, configuration, how connected to what?
 
+## [Raspberry Pi](https://www.raspberrypi.org/)
+* install the EKZ image (link)
+* configure what?
+* Setup MQTT Bridge to transfer the messages to our main MQTT Broker on the NUC
+
 ## [NUC](https://www.intel.com/content/www/us/en/products/details/nuc.html)
 * install ubuntu
 * hostname: hackday
@@ -58,4 +63,3 @@ for instance:
 mosquitto_sub -h localhost -t "#"
 mosquitto_pub -h localhost -t "<your favorite topic>" -m "<your message>" (edited) 
 ```
-## Raspberry Pi
