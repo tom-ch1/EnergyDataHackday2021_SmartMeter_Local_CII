@@ -1,43 +1,45 @@
 # Interoperability plug-test for smart meter’s local CII
 Empower citizens to use their own energy data. Using the smartmeter's local interface for visualisation and automation
 
-See https://hack.opendata.ch/project/783
+See [Challenge.md](Challenge.md)
 
-# Introduction
-Smart Meters currently being installed in Switzerland serve mainly to liberalize the electricity market, but they hardly deliver the promised energy savings because they do not yet provide customers with easy access to their data. StromVV §8a defines the characteristics of smart metering systems requiring a local customer interface (CII), which should allow customers to easily access their own consumption data. Unfortunately, these interfaces are not implemented uniformly by the manufacturers and are rolled out by distribution system operators (DSO) in different configurations. This makes it very difficult for the normal customer to get access to his data.
-
-# Motivation
-The easy and free access of consumption data is a crucial step in the energy transition and shall help to provide the following contribution
-1. give customers transparency about their consumption in real time
-1. change customer behavior in a sustainable way to save energy
-1. create innovations that help customers to optimize their own consumption with self-generation (PV) and controllable consumers (car charging station, heat pump)
+# Goal
+Provide a unified and open API for all types of Smartmeters
 
 # Idea
-Reading of different types of smart meter CII (DLMS, IDIS CII, DSMR-P1, MBUS), used by different DSO (EKZ, AEW, EWB, Romande Energie) by means of a metering data adapter which provides the data to the customer via a harmonized MQTT profile that can be used via an open visualization and automation. The customer can thus view the data at any time and also use it to align his own automation to optimized self-consumption. The MQTT topics should be standardized to provide interoperability between different smart meters and various applications.
+1. Read different types of smart meter CII (DLMS, IDIS CII, DSMR-P1, MBUS), used by different DSO (EKZ, AEW, EWB, Romande Energie) by means of a hardware metering data adapter and publish the data "as is" to an MQTT Broker
+2. design a harmonized MQTT profile that can be used via an open visualization and automation.
+3. implement an MQTT client that subscribes to the "raw" Smartmeter topics, translate the messages to the harmonized MQTT profile and publish them to the MQTT Broker.
 
-# Data
-The data from the different meters are sent via MBUS or DSMR to a adapter which converts the data into MQTT. Different meters are provided by the DSO. The MQTT stream is then integrated into OpenHab 3.0 and ioBroker.
+The customer can thus use the data for further processing, visualisation or automation. As the MQTT topics are standardized, the customer does not need to care about the type of Smartmeter or DSO, it just works!
 
-# Tasks
-* Setup of the metering systems
-* Conversion of MBUS-DLMS/COSEM data into MQTT using the open-source library from gurux.fi
-* Adaption of the DSMR-P1 Protocol to MQTT
-* Documentation of the interoperable MQTT interface
-* Integration of the smart meter data into ioBroker and OpenHab
+# Hardware Infrastructure
+* here should be a picture of our Smartmeters, adapters, NUC, and Raspberry Pi
+* Additionally, a schemaric of the HW setup could be provided
 
-## Previous work at Energy Hack Days 2020:
-* [Read your own Smart Meter](https://hack.opendata.ch/project/466)
-* [Unleashing the Swiss Smartmeter's CII](https://hack.opendata.ch/project/582)
-* [DSMR-P1 Adapter "gPlug" from forumE.ch](https://forume.ch/t/kundenschnittstelle-der-intelligenten-messsysteme/938/9)
+# Component Setup
 
-# Infrastructure
-## nuc
+## Smartmeters and Adapters
+### EKZ (Brand / Model)
+* type of adapter, configuration, how connected to what?
+
+### AEW (Brand / Model)
+* type of adapter, configuration, how connected to what?
+
+### ewb (Brand / Model)
+* type of adapter, configuration, how connected to what?
+
+### Romande Energie (Brand / Model)
+* type of adapter, configuration, how connected to what?
+
+## [NUC](https://www.intel.com/content/www/us/en/products/details/nuc.html)
+* install ubuntu
 * hostname: hackday
 * ip address: 192.168.1.100
 * credentials:
   * hackday / hackday
 
-## configuring mosquitto on the nuc
+### configuring mosquitto on the nuc
 * create a user for mqtt (password: hackday)
 ```
 mosquitto_passwd -c /etc/mosquitto/pwfile hackday
@@ -56,3 +58,4 @@ for instance:
 mosquitto_sub -h localhost -t "#"
 mosquitto_pub -h localhost -t "<your favorite topic>" -m "<your message>" (edited) 
 ```
+## Raspberry Pi
