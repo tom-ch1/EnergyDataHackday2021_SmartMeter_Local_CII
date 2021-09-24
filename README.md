@@ -3,5 +3,6 @@
 
 ## configuring mosquitto on the nuc
 * add a listener to /etc/mosquitto/:
-    allow_anonymous true
-    listener 1883
+    ```allow_anonymous true
+    listener 1883```
+* no credentials are setup
