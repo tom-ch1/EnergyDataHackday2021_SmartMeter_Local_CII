@@ -50,6 +50,16 @@ The customer can thus use the data for further processing, visualisation or auto
 * configure what?
 * Setup MQTT Bridge to transfer the messages to our main MQTT Broker on the NUC
 
+## [P1 Smart Meter](https://tasmota.github.io/docs/P1-Smart-Meter/)
+* some assembly required (not shown here)
+* plug it into the smart meter P1 port
+* connect to the WiFi access point that it makes (SSID: Tasmota....XXXX)
+* in the configuration page (that pops up) configure access to your home WiFi
+* 'save' and it reboots
+* connect to the "new" IP on your home WiFi (http://<whatever>/) to access the Tasmota configuration page
+* configure the MQTT host and topic and other Tasmota options
+* 'save'
+
 ## [NUC](https://www.intel.com/content/www/us/en/products/details/nuc.html)
 * install ubuntu
 * hostname: hackday
