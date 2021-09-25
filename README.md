@@ -68,3 +68,11 @@ for instance:
 mosquitto_sub -h localhost -t "#"
 mosquitto_pub -h localhost -t "<your favorite topic>" -m "<your message>" (edited) 
 ```
+
+# Team
+![Team](Team.jpg "Open Energy Data Hackday team")
+
+
+![Report](018_interoperability-plug-test-for-smart-meter.pdf "Open Energy Data Hackday report")
+
+

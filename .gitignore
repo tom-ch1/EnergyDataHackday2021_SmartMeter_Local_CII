@@ -1,2 +1,26 @@
-*.pyc
-venv
+# Java #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# IDEA #
+*.iml
+.idea
+*~
+
+# Eclipse #
+.project
+.metadata
+.classpath
+.settings/
+
+# Maven #
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+
