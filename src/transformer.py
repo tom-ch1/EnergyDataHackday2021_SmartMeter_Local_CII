@@ -16,7 +16,7 @@ def transform(message: object):
     topic = message.topic
 
     if "M1" in topic and "SENSOR" in topic:
-        name = topic.slit("/")[1]
+        name = topic.split("/")[1]
         name = map_name(name)
         data = json.loads(message.payload)
         value = data["value"]
