@@ -38,7 +38,7 @@ def on_message(client, userdata, message):
         write_point(payload)
         topic, msg = format_msg(*payload)
         client.publish(topic, msg)
-    except e:
+    except:
         pass
 
 
