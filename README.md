@@ -3,6 +3,9 @@ Empower citizens to use their own energy data. Using the smartmeter's local inte
 
 See [Challenge.md](Challenge.md)
 
+See also repo smartmeter-datacollector here:
+https://github.com/scs/smartmeter-datacollector
+
 # Goal
 Provide a unified and open API for all types of Smartmeters
 
