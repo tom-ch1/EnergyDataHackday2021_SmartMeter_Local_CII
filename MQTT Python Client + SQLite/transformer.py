@@ -1,6 +1,6 @@
 import json
 
-ENDPOINT = "grafana"
+TRANSFORM_PREFIX = "grafana/smartmeter"
 
 
 def transform(message: object):
@@ -35,12 +35,13 @@ def transform(message: object):
 
 
 def format_msg(name, time, field, value):
-    topic = f"{ENDPOINT}/{name}/{field}"
+    topic = f"{TRANSFORM_PREFIX}/{name}/{field}"
     payload = json.dumps(
         {
             'measurement': field,
             "tags": {
-                "timestamp": time
+                "timestamp": time,
+                "name": name
             },
             "fields": {
                 field: value
