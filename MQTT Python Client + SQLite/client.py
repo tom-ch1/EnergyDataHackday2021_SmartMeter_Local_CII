@@ -1,44 +1,52 @@
 import paho.mqtt.client as mqttClient
-from transformer import transform
-from influxdb import InfluxDBClient
+from transformer import transform, format_msg
+import influxdb_client
+from influxdb_client.client.write_api import SYNCHRONOUS
+from influxdb_client import InfluxDBClient, Point
 
 BROKER_ENDP = "192.168.1.100"
 BROKER_PORT = 1883
 BROKER_USER = "hackday"
-BROKER_PASS = "hadkday"
+BROKER_PASS = "hackday"
 
-INFLUXDB_ADDRESS = '192.168.1.100'
-INFLUXDB_USER = 'mqtt'
-INFLUXDB_PASSWORD = 'mqtt'
+INFLUXDB_URL = 'http://192.168.1.100:8086'
+INFLUXDB_TOKEN = 'OKzVyqE2gv-ykddVAzc3jB6CnVg_UWZ9xhQ7of9JX5YGK2r8B6wFJ9vEtMg7b2JNn5_wE6PhJ_mLGwYMWuAJhw=='
+INFLUXDB_ORG = "hackday"
+INFLUXDB_BUCKET = "hackday"
 INFLUXDB_DATABASE = 'smartmeter'
 
-# influxdb_client = InfluxDBClient(
-#     INFLUXDB_ADDRESS, 8086, INFLUXDB_USER, INFLUXDB_PASSWORD, None)
+
+influxdb_client = InfluxDBClient(
+    url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
+write_api = influxdb_client.write_api(write_options=SYNCHRONOUS)
 
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to the broker..")
-    client.subscribe("smartmeter/#")
+    client.subscribe("#")
 
 
 def on_message(client, userdata, message):
-    print(message)
-    print(message.payload)
     if "Online" in str(message.payload):
         return
 
-    topic, payload = transform(message)
+    if "openhab" in message.topic:
+        return
 
-    # # if topic and payload:
-    # #     client.publish(topic, payload)
-    # influxdb_client.write_points(payload)
-    # print("sent to influxdb")
+    try:
+        payload = transform(message)
+        write_point(payload)
+        topic, msg = format_msg(*payload)
+        client.publish(topic, msg)
+    except:
+        pass
 
 
-broker_address = "192.168.1.100"    # Broker address
-port = 1883                         # Broker port
-user = "hackday"                    # Connection username
-password = "hackday"                # Connection password
+def write_point(payload):
+    [name, time, field, value] = payload
+    p = Point(INFLUXDB_DATABASE).tag(
+        "name", name).field("time", time).field(field, float(value))
+    write_api.write(bucket=INFLUXDB_BUCKET, record=p)
 
 
 client = mqttClient.Client("Jackson")
