@@ -15,13 +15,23 @@ def transform(message: object):
     """
     topic = message.topic
 
+    if "M1" in topic and "SENSOR" in topic:
+        name = topic.slit("/")[1]
+        name = map_name(name)
+        data = json.loads(message.payload)
+        value = data["value"]
+        time = int(datetime.now().timestamp())
+        [field, value] = list(data["Z1"].items())[0]
+        new_field = map_field("GPLUG_PROTO1", field)
+        return [name, time, new_field, value]
+
     if "gPlug" in topic and "SENSOR" in topic:
         name = topic.split("/")[1]
         name = map_name(name)
         data = json.loads(message.payload)
         [field, value] = list(data["z"].items())[0]
         time = int(datetime.now().timestamp())
-        new_field = map_field("DSMR", field)
+        new_field = map_field("GPLUG_PROTO2", field)
         return [name, time, new_field, value]
 
     if "smartmeter/" in topic:
@@ -31,7 +41,7 @@ def transform(message: object):
         value = data["value"]
         time = int(datetime.now().timestamp())
         field = topic.split("/")[2]
-        new_field = map_field("DLMS", field)
+        new_field = map_field("EKZ_PROTO", field)
         return [name, time, new_field, value]
 
     raise Exception("Not sensor data.")
@@ -53,6 +63,8 @@ def map_name(name):
     """
     if "12345" in name:
         return "AEW"
+    if "M1" in name:
+        return "BKV"
     if "LG" in name:
         return "EKZ"
     if "gPlug10" in name:
@@ -62,16 +74,15 @@ def map_name(name):
 
 
 def map_field(device, field):
-    if device == "DSMR":
-        if field == "Ei":
+    if device == "GPLUG_PROTO1":
+        if field == "P_Bezug":
+            return "power_in"
+        if field == "P_Ein":
+            return "power_out"
+    if device == "GPLUG_PROTO2":
+        if field in ["Ei", "Ei1"]:
             return "energy_in"
-        if field == "Ei1":
-            return "energy_in"
-        if field == "Ei2":
-            return "energy_in/tariff_2"
-        if field == "Eo":
-            return "energy_out"
-        if field == "Eo1":
+        if field in ["Eo", "Eo1"]:
             return "energy_out"
         if field == "Pi":
             return "power_in"
@@ -79,7 +90,7 @@ def map_field(device, field):
             return "power_out"
         if field == "P1i":
             return "power_in"
-    if device == "DLMS":
+    if device == "EKZ_PROTO":
         if field == "ACTIVE_POWER_P":
             return "power_in"
         if field == "ACTIVE_POWER_N":
@@ -88,4 +99,5 @@ def map_field(device, field):
             return "energy_in"
         if field == "ACTIVE_ENERGY_N":
             return "energy_out"
+
     return "extra:"+field
