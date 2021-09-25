@@ -19,6 +19,8 @@ The customer can thus use the data for further processing, visualisation or auto
 
 # Component Setup
 
+![Architecture](https://rawgit.com/tom-ch1/EnergyDataHackday2021_SmartMeter_Local_CII/Architecture.jpg "Architecture diagram")
+
 ## Smartmeters and Adapters
 ### EKZ (Brand / Model)
 * type of adapter, configuration, how connected to what?
