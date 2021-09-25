@@ -4,12 +4,12 @@ import influxdb_client
 from influxdb_client.client.write_api import SYNCHRONOUS
 from influxdb_client import InfluxDBClient, Point
 
-BROKER_ENDP = "192.168.1.100"
+BROKER_ENDP = "localhost"
 BROKER_PORT = 1883
 BROKER_USER = "hackday"
 BROKER_PASS = "hackday"
 
-INFLUXDB_URL = 'http://192.168.1.100:8086'
+INFLUXDB_URL = 'http://localhost:8086'
 INFLUXDB_TOKEN = 'OKzVyqE2gv-ykddVAzc3jB6CnVg_UWZ9xhQ7of9JX5YGK2r8B6wFJ9vEtMg7b2JNn5_wE6PhJ_mLGwYMWuAJhw=='
 INFLUXDB_ORG = "hackday"
 INFLUXDB_BUCKET = "hackday"
@@ -49,7 +49,7 @@ def write_point(payload):
     write_api.write(bucket=INFLUXDB_BUCKET, record=p)
 
 
-client = mqttClient.Client("Jackson")
+client = mqttClient.Client("Python")
 client.username_pw_set(BROKER_USER, password=BROKER_PASS)
 client.on_connect = on_connect
 client.on_message = on_message
