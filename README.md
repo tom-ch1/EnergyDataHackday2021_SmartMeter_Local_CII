@@ -19,7 +19,7 @@ The customer can thus use the data for further processing, visualisation or auto
 
 # Component Setup
 
-![Architecture](Architecture.jpg "Architecture diagram")
+![Architecture](Architecture.jpeg "Architecture diagram")
 
 ## Smartmeters and Adapters
 ### EKZ (Brand / Model)
