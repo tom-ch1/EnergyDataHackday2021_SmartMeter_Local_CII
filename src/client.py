@@ -43,6 +43,8 @@ def on_message(client, userdata, message):
 
 
 def write_point(payload):
+    """Writes payload to INFLUXDB.
+    """
     [name, time, field, value] = payload
     p = Point(INFLUXDB_DATABASE).tag(
         "name", name).field("time", time).field(field, float(value))
