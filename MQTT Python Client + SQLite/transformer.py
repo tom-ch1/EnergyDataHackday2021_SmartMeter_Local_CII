@@ -62,10 +62,13 @@ def mapping(device, field):
         if field == "Ei":
             return "energy_in"
         if field == "Ei1":
-            return "energy_in/tariff_1"
+            # return "energy_in/tariff_1"
+            return "energy_in"
         if field == "Ei2":
             return "energy_in/tariff_2"
         if field == "Eo":
+            return "energy_out"
+        if field == "Eo1":
             return "energy_out"
         if field == "Pi":
             return "power_in"
