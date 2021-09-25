@@ -28,6 +28,17 @@ The customer can thus use the data for further processing, visualisation or auto
 ### EKZ (Brand / Model)
 * Brand: Landis+Gyr
 * Model: [E450](https://www.landisgyr.ch/product/landisgyr-e450/)
+* Adapter: [MBUS to USB adapter](https://www.empro.ch/en/products/interfaces/zeta-usb-interfaces/m-bus-slave/)
+* Configuration:
+  * describe raspi config
+
+### AEW (Brand / Model)
+* type of adapter, configuration, how connected to what?
+
+### ewb (Brand / Model)
+* type of adapter, configuration, how connected to what?
+* Brand: Landis+Gyr
+* Model: [E450](https://www.landisgyr.ch/product/landisgyr-e450/)
 * Adapter: gPlug (https://forume.ch/t/kundenschnittstelle-der-intelligenten-messsysteme/938/9)
 * Configuration:
   * the gPlug reads the meter data and publishes it to an MQTT Broker
@@ -35,15 +46,17 @@ The customer can thus use the data for further processing, visualisation or auto
     * WLAN to connect to
     * MQTT Broker to connect to
 
-### AEW (Brand / Model)
-* type of adapter, configuration, how connected to what?
-
-### ewb (Brand / Model)
-* type of adapter, configuration, how connected to what?
-
 ### Romande Energie (Brand / Model)
 * type of adapter, configuration, how connected to what?
 * https://tasmota.github.io/docs/P1-Smart-Meter/
+* Brand: Landis+Gyr
+* Model: [E450](https://www.landisgyr.ch/product/landisgyr-e450/)
+* Adapter: gPlug (https://forume.ch/t/kundenschnittstelle-der-intelligenten-messsysteme/938/9)
+* Configuration:
+  * the gPlug reads the meter data and publishes it to an MQTT Broker
+  * For that to work, you have to configure the [gPlug's Tasmota Software](https://tasmota.github.io/docs/P1-Smart-Meter/):
+    * WLAN to connect to
+    * MQTT Broker to connect to
 
 ## [Raspberry Pi](https://www.raspberrypi.org/)
 * install the EKZ image (link)
