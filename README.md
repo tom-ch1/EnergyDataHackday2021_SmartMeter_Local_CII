@@ -30,27 +30,30 @@ The customer can thus use the data for further processing, visualisation or auto
 * Model: [E450](https://www.landisgyr.ch/product/landisgyr-e450/)
 * Adapter: [MBUS to USB adapter](https://www.empro.ch/en/products/interfaces/zeta-usb-interfaces/m-bus-slave/)
 * Configuration:
-  * describe raspi config
+  * The MBUS to USB Adapter connects the Smartmeter to a [Raspberry Pi](https://www.raspberrypi.org/
+  * On the Raspberry Pi, the [smartmeter-datacollector](https://github.com/scs/smartmeter-datacollector) software retrieve data from the smart meter and publishes them to the mosquitto MQTT Broker that runs on the NUC.
 
 ### AEW (Brand / Model)
-* type of adapter, configuration, how connected to what?
-
-### ewb (Brand / Model)
-* type of adapter, configuration, how connected to what?
 * Brand: Landis+Gyr
 * Model: [E450](https://www.landisgyr.ch/product/landisgyr-e450/)
+* Adapter: [MBUS to USB adapter](https://www.empro.ch/en/products/interfaces/zeta-usb-interfaces/m-bus-slave/)
+* Configuration:
+  * The MBUS to USB Adapter connects the Smartmeter to the NUC
+  * On the NUC, the [smartmeter-datacollector](https://github.com/scs/smartmeter-datacollector) software was installed to retrieve data from the smart meter and publishe them to the mosquitto MQTT Broker.
+
+### ewb (Brand / Model)
+* Brand: Semax Honeywell Elster
+* Model: [AS3000](https://semax.ch/as3000/) mit [AM540 Kommunikationsmodul](https://semax.ch/en/am540/)
 * Adapter: gPlug (https://forume.ch/t/kundenschnittstelle-der-intelligenten-messsysteme/938/9)
 * Configuration:
-  * the gPlug reads the meter data and publishes it to an MQTT Broker
+  * the gPlug reads the smart meter data and publishes it to an MQTT Broker
   * For that to work, you have to configure the [gPlug's Tasmota Software](https://tasmota.github.io/docs/P1-Smart-Meter/):
     * WLAN to connect to
     * MQTT Broker to connect to
 
 ### Romande Energie (Brand / Model)
-* type of adapter, configuration, how connected to what?
-* https://tasmota.github.io/docs/P1-Smart-Meter/
-* Brand: Landis+Gyr
-* Model: [E450](https://www.landisgyr.ch/product/landisgyr-e450/)
+* Brand: ISKRA
+* Model: AM550
 * Adapter: gPlug (https://forume.ch/t/kundenschnittstelle-der-intelligenten-messsysteme/938/9)
 * Configuration:
   * the gPlug reads the meter data and publishes it to an MQTT Broker
@@ -59,8 +62,7 @@ The customer can thus use the data for further processing, visualisation or auto
     * MQTT Broker to connect to
 
 ## [Raspberry Pi](https://www.raspberrypi.org/)
-* install the EKZ image (link)
-* configure what?
+* install the [smartmeter-datacollector image](https://github.com/scs/smartmeter-datacollector/releases)
 * Setup MQTT Bridge to transfer the messages to our main MQTT Broker on the NUC
 
 ## [P1 Smart Meter](https://tasmota.github.io/docs/P1-Smart-Meter/)
