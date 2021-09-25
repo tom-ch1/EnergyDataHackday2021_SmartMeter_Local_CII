@@ -65,7 +65,7 @@ The customer can thus use the data for further processing, visualisation or auto
 * install the [smartmeter-datacollector image](https://github.com/scs/smartmeter-datacollector/releases)
 * Setup MQTT Bridge to transfer the messages to our main MQTT Broker on the NUC
 
-## [P1 Smart Meter](https://tasmota.github.io/docs/P1-Smart-Meter/)
+## [gPlug (P1 Smart Meter)](https://tasmota.github.io/docs/P1-Smart-Meter/)
 * some assembly required (not shown here)
 * plug it into the smart meter P1 port
 * connect to the WiFi access point that it makes (SSID: Tasmota....XXXX)
