@@ -19,7 +19,6 @@ def transform(message: object):
         name = topic.split("/")[1]
         name = map_name(name)
         data = json.loads(message.payload)
-        value = data["value"]
         time = int(datetime.now().timestamp())
         [field, value] = list(data["Z1"].items())[0]
         new_field = map_field("GPLUG_PROTO1", field)
