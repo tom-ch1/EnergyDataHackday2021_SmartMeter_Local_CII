@@ -63,7 +63,7 @@ def map_name(name):
     if "12345" in name:
         return "AEW"
     if "M1" in name:
-        return "BKV"
+        return "BKW"
     if "LG" in name:
         return "EKZ"
     if "gPlug10" in name:
