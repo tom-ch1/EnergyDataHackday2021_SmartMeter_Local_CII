@@ -16,13 +16,38 @@ Provide a unified and open API for all types of Smartmeters
 
 The customer can thus use the data for further processing, visualisation or automation. As the MQTT topics are standardized, the customer does not need to care about the type of Smartmeter or DSO, it just works!
 
-# Hardware Infrastructure
-* here should be a picture of our Smartmeters, adapters, NUC, and Raspberry Pi
-* Additionally, a schemaric of the HW setup could be provided
-
 # Component Setup
 
-![Architecture](Architecture.jpeg "Architecture diagram")
+| Smartmeters | Architecture |
+| ------------- | ------------- |
+| <img src="img/hackday_smartmeters.jpg" width="600"/> | <img src="img/Architecture.jpeg" width="600"/> |
+
+# Results
+* We connected to all four smart meters and converted their MQTT messages into a uniform structure
+* We integrated the smart meter data into openHAB
+* We persisted the data into influx and displayed it using grafana
+
+## Uniform MQTT profile
+This is how the smart meters published their data:
+```
+EKZ: smartmeter/LGZ1030655933512/ACTIVE_POWER_P {"value": 1, "timestamp": 1629055611}
+Romande Energie: tele/gPlug11/SENSOR {"Time":"2021-09-24T17:56:38","z":{"Pi":0}}
+AEW: smartmeter/12345/ACTIVE_POWER_P {"value": 42.0, "timestamp": 1632499152}
+EWB:  tele/gPlug10/SENSOR {"Time":"2021-09-24T17:03:45","z":{"Pi":12}}
+```
+And this is how our [transformer script](src) converted the data:
+```
+EKZ: smartmeter/<id od EKZ smart meter>/power/power_in {"timestamp": 1629055611, "value": 1}
+Romande Energie: smartmeter/<id of Romande Energie smart meter>/power/power_in {"timestamp": 1632498998,"value": 0 }
+AEW: smartmeter/<id od AEW smart meter>/power/power_in {"timestamp": 1632499152, "value": 42 }
+EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,"value": 12}
+```
+
+## Visualisation with Grafana
+![grafana](img/hackday_grafana.png "smart meter data, visualized with grafana")
+
+## Integration into openHAB
+![openhab](img/hackday_openhab.png "smart meter data, integrated into openHAB")
 
 ## Smartmeters and Adapters
 ### EKZ (Brand / Model)
@@ -110,6 +135,6 @@ mosquitto_pub -h localhost -t "<your favorite topic>" -m "<your message>" (edite
 ```
 
 # Team
-![Team](Team.jpg "Open Energy Data Hackday team")
+![Team](img/Team.jpg "Open Energy Data Hackday team")
 
 ![Report](018_interoperability-plug-test-for-smart-meter.pdf "Open Energy Data Hackday report")
