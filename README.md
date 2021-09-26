@@ -26,6 +26,7 @@ The customer can thus use the data for further processing, visualisation or auto
 * We connected to all four smart meters and converted their MQTT messages into a uniform structure
 * We integrated the smart meter data into openHAB
 * We persisted the data into influx and displayed it using grafana
+* [Presentation](PitchChallenge_21_v2.pdf)
 
 ## Uniform MQTT profile
 This is how the smart meters published their data:
@@ -50,7 +51,7 @@ EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,
 ![openhab](img/hackday_openhab.png "smart meter data, integrated into openHAB")
 
 ## Smartmeters and Adapters
-### EKZ (Brand / Model)
+### EKZ
 * Brand: Landis+Gyr
 * Model: [E450](https://www.landisgyr.ch/product/landisgyr-e450/)
 * Interface: [MBUS](https://m-bus.com/)
@@ -61,7 +62,7 @@ EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,
   * On the Raspberry Pi, the [smartmeter-datacollector](https://github.com/scs/smartmeter-datacollector) software retrieves data from the smart meter and publishes them to the mosquitto MQTT Broker that runs on the NUC.
   * smartmeter-datacollector depends on the [gurux library](https://github.com/Gurux/Gurux.DLMS.Python) for reading DLMS Data from the smart meter.
 
-### AEW (Brand / Model)
+### AEW
 * Brand: Landis+Gyr
 * Model: [E450](https://www.landisgyr.ch/product/landisgyr-e450/)
 * Interface: [MBUS](https://m-bus.com/)
@@ -71,7 +72,7 @@ EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,
   * The MBUS-TTL-USB Adapter connects the Smartmeter to the NUC
   * On the NUC, the [smartmeter-datacollector](https://github.com/scs/smartmeter-datacollector) software was installed to retrieve data from the smart meter and publishe them to the mosquitto MQTT Broker. smartmeter-datacollector depends on the [gurux library](https://github.com/Gurux/Gurux.DLMS.Python) for reading DLMS Data from the smart meter.
 
-### ewb (Brand / Model)
+### ewb
 * Brand: Semax Honeywell Elster
 * Model: [AS3000](https://semax.ch/as3000/) mit [AM540 Kommunikationsmodul](https://semax.ch/en/am540/)
 * Interface: [DSMR P1](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf)
@@ -80,9 +81,9 @@ EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,
 * Configuration:
   * the gPlug-Adapter reads the smart meter data and publishes it to an MQTT Broker (see below)
 
-### Romande Energie (Brand / Model)
+### Romande Energie
 * Brand: ISKRA
-* Model: AM550
+* Model: [AM550](https://www.iskraemeco.hr/AM550.pdf)
 * Interface: [DSMR P1](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf)
 * Adapter: DSMR P1 to WLAN [gPlug-Adapter](https://forume.ch/t/kundenschnittstelle-der-intelligenten-messsysteme/938/9)
 * Protocol: [DSMR](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf)
