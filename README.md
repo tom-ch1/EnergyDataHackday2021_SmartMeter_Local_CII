@@ -63,9 +63,6 @@ The customer can thus use the data for further processing, visualisation or auto
 * Protocol: [DSMR](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf)
 * Configuration:
   * the gPlug-Adapter reads the meter data and publishes it to an MQTT Broker (see below)
-  * For that to work, you have to configure the [gPlug's Tasmota Software](https://tasmota.github.io/docs/P1-Smart-Meter/):
-    * WLAN to connect to
-    * MQTT Broker to connect to
 
 ## [Raspberry Pi](https://www.raspberrypi.org/)
 * install the [smartmeter-datacollector image](https://github.com/scs/smartmeter-datacollector/releases)
@@ -89,12 +86,10 @@ The customer can thus use the data for further processing, visualisation or auto
 
 ## [NUC](https://www.intel.com/content/www/us/en/products/details/nuc.html)
 * install ubuntu
-* hostname: hackday
-* ip address: 192.168.1.100
-* credentials:
-  * hackday / hackday
-
-### configuring mosquitto on the nuc
+* install smartmeter-datacollector debian package
+  * apply a [patch](https://github.com/tom-ch1/smartmeter-datacollector) to adapt smartmeter-datacollector to the AEW smart meter:
+    * replace missing timestamp with the local time
+    * replace missing device ID with a fake ID (12345)
 * create a user for mqtt (password: hackday)
 ```
 mosquitto_passwd -c /etc/mosquitto/pwfile hackday
@@ -117,7 +112,4 @@ mosquitto_pub -h localhost -t "<your favorite topic>" -m "<your message>" (edite
 # Team
 ![Team](Team.jpg "Open Energy Data Hackday team")
 
-
 ![Report](018_interoperability-plug-test-for-smart-meter.pdf "Open Energy Data Hackday report")
-
-
