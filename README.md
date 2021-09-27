@@ -137,5 +137,4 @@ mosquitto_pub -h localhost -t "<your favorite topic>" -m "<your message>" (edite
 
 # Team
 ![Team](img/Team.jpg "Open Energy Data Hackday team")
-
-![Report](018_interoperability-plug-test-for-smart-meter.pdf "Open Energy Data Hackday report")
+Peter Kreutzer, Derrick Oswald, Jonas Matt, Herrmann Hueni, Jordi Campos, Angelos Selviaridis, Thomas Strösslin
