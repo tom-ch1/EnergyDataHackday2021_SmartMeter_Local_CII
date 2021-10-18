@@ -55,7 +55,7 @@ EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,
 * Brand: Landis+Gyr
 * Model: [E450](https://www.landisgyr.ch/product/landisgyr-e450/)
 * Interface: [MBUS](https://m-bus.com/)
-* Adapter: [MBUS to USB adapter](https://www.empro.ch/en/products/interfaces/zeta-usb-interfaces/m-bus-slave/)
+* Adapter: [MBUS adapter](#mbus-adapter)
 * Protocol: [DLMS/COSEM](https://www.dlms.com/dlms-cosem/)
 * Configuration:
   * The MBUS to USB Adapter connects the Smartmeter to a [Raspberry Pi](https://www.raspberrypi.org/)
@@ -66,7 +66,7 @@ EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,
 * Brand: Landis+Gyr
 * Model: [E450](https://www.landisgyr.ch/product/landisgyr-e450/)
 * Interface: [MBUS](https://m-bus.com/)
-* Adapter: [MBUS to TTL adapter](https://www.aliexpress.com/item/32751482255.html?spm=a2g0s.9042311.0.0.7e0c4c4dkWHVtG) and an USB to TTL/CMOS serial converter (e.g. FTDI FT232 or Prolific PL2303). Be sure that this converter does not contain a RS232 voltage converter (e.g. MAX232).
+* Adapter: [MBUS adapter](#mbus-adapter)
 * Protocol: [DLMS/COSEM](https://www.dlms.com/dlms-cosem/)
 * Configuration:
   * The MBUS-TTL-USB Adapter connects the Smartmeter to the NUC
@@ -76,7 +76,7 @@ EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,
 * Brand: Semax Honeywell Elster
 * Model: [AS3000](https://semax.ch/as3000/) mit [AM540 Kommunikationsmodul](https://semax.ch/en/am540/)
 * Interface: [DSMR P1](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf)
-* Adapter: DSMR P1 to WLAN [gPlug-Adapter](https://forume.ch/t/kundenschnittstelle-der-intelligenten-messsysteme/938/9)
+* Adapter: DSMR P1 to WLAN [gPlug-Adapter](#gplug-adapter)
 * Protocol: [DSMR](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf)
 * Configuration:
   * the gPlug-Adapter reads the smart meter data and publishes it to an MQTT Broker (see below)
@@ -85,7 +85,7 @@ EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,
 * Brand: ISKRA
 * Model: [AM550](https://www.iskraemeco.hr/AM550.pdf)
 * Interface: [DSMR P1](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf)
-* Adapter: DSMR P1 to WLAN [gPlug-Adapter](https://forume.ch/t/kundenschnittstelle-der-intelligenten-messsysteme/938/9)
+* Adapter: DSMR P1 to WLAN [gPlug-Adapter](#gplug-adapter)
 * Protocol: [DSMR](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf)
 * Configuration:
   * the gPlug-Adapter reads the meter data and publishes it to an MQTT Broker (see below)
@@ -109,6 +109,15 @@ EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,
   * [ESP8266 thingies](http://www.esp8266thingies.nl/wp/)
   * [tweakers](https://tweakers.net/aanbod/2760894/p1-dsmr-slimme-meter-wifi-gateway-obv-esp8266.html)
   * [Domoticx](http://domoticx.com/p1-poort-slimme-meter-hardware/)
+
+## MBUS adapter
+We used two types of MBUS adapters:
+* for EKZ: [MBUS to USB adapter](https://www.empro.ch/en/products/interfaces/zeta-usb-interfaces/m-bus-slave/)
+* for AEW: [MBUS to TTL adapter](https://www.aliexpress.com/item/32751482255.html?spm=a2g0s.9042311.0.0.7e0c4c4dkWHVtG) and an USB to TTL/CMOS serial converter (e.g. FTDI FT232 or Prolific PL2303). Be sure that this converter does not contain a RS232 voltage converter (e.g. MAX232).
+More information about MBUS adapters:
+* [esphome-dlms-meter](https://github.com/DomiStyle/esphome-dlms-meter), combines an [m-bus-slave-click](https://www.mikroe.com/m-bus-slave-click] UART adapter and an [ESP32](https://en.wikipedia.org/wiki/ESP32)
+* [MBUS to TTL / USB schematics](http://domoticx.com/m-bus-hardware-components/)
+* [M-Bus-TTL (USB/RS232) Converter](https://gitlab.com/jm_wtal/mbus-usb-converter)
 
 ## [NUC](https://www.intel.com/content/www/us/en/products/details/nuc.html)
 * install ubuntu
