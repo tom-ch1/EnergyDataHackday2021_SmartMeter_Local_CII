@@ -112,7 +112,7 @@ EWB: smartmeter/<id od EWB smart meter>/power/power_in {"timestamp": 1632495825,
 
 ## MBUS adapter
 We used two types of MBUS adapters:
-* for EKZ: [MBUS to USB adapter](https://www.empro.ch/en/products/interfaces/zeta-usb-interfaces/m-bus-slave/)
+* for EKZ: [MBUS to USB adapter](https://zeta-eng.ch/en/products/interfaces/zeta-usb-interfaces/m-bus-slave/)
 * for AEW: [MBUS to TTL adapter](https://www.aliexpress.com/item/32751482255.html?spm=a2g0s.9042311.0.0.7e0c4c4dkWHVtG) and an USB to TTL/CMOS serial converter (e.g. FTDI FT232 or Prolific PL2303). Be sure that this converter does not contain a RS232 voltage converter (e.g. MAX232).
 More information about MBUS adapters:
 * [esphome-dlms-meter](https://github.com/DomiStyle/esphome-dlms-meter), combines an [m-bus-slave-click](https://www.mikroe.com/m-bus-slave-click) UART adapter and an [ESP32](https://en.wikipedia.org/wiki/ESP32)
